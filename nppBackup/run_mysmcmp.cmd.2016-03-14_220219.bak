@@ -1,0 +1,3 @@
+set FolderINI=
+set FolderSmMyCpm=
+set curFolder=%cd%
