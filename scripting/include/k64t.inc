@@ -3,6 +3,11 @@
 #endif
 #define _k_k64t
 #pragma semicolon 1
+
+#define K64T_INCLUDE_PATH "smk64t\scripting\include\smK64t"
+#define SM_INCLUDE_PATH  "smk64t\sourcemod-1.7.3-git5301\include" 
+#define SMLIB_INCLUDE_PATH  "smlib\scripting\include" 
+
 #include <sourcemod>
 #include <sdktools>
 //#include <cstrike>
@@ -13,11 +18,11 @@
 #include <color.inc> 
 
 //myIncludes
-#include "k_math.inc"
-#include "k_string.inc"
-#include "player.k64t.inc"
-#include "k_file.inc" 
-#include "k_cstrike.inc"
+#include "smk64t\k_math.inc"
+#include "smk64t\k_string.inc"
+#include "smk64t\player.k64t.inc"
+#include "smk64t\k_file.inc" 
+#include "smk64t\k_cstrike.inc"
 
 
 #define MAX_PLAYERS 33
@@ -28,7 +33,7 @@
 		#undef PLUGIN_VERSION
 	#endif		
 #endif
-#include "datetimecomp.inc"
+#include "addons\sourcemod\scripting\datetimecomp.inc"
 #if defined DEBUG 
 	new gPLUGIN_NAME[]=PLUGIN_NAME;
 	#include "Debug.k64t.inc"
