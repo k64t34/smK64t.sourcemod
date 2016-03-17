@@ -39,16 +39,9 @@
 
 
 
-//#if !defined MAX_WEAPON_NAME
-//#define MAX_WEAPON_NAME 32
+#if !defined MAX_WEAPON_NAME
+#define MAX_WEAPON_NAME 32
 #if defined USE_WEAPON
-#pragma newdecls optional
-#include <smlib.inc> 
-// Common const from cstrike.inc
-//#define MAX_WEAPON_STRING		80
-#pragma newdecls required
-#endif
-
 
 #endinput
 //#if !defined MAX_WEAPONS

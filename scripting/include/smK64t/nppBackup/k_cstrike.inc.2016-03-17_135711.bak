@@ -43,9 +43,12 @@
 //#define MAX_WEAPON_NAME 32
 #if defined USE_WEAPON
 #pragma newdecls optional
-#include <smlib.inc> 
+#include <weapons> 
 // Common const from cstrike.inc
-//#define MAX_WEAPON_STRING		80
+//#define CS_TEAM_NONE		0	/**< No team yet. */
+//#define CS_TEAM_SPECTATOR	1	/**< Spectators. */
+//#define CS_TEAM_T 			2	/**< Terrorists. */
+//#define CS_TEAM_CT			3	/**< Counter-Terrorists. */
 #pragma newdecls required
 #endif
 

@@ -3,4 +3,4 @@
 #endif
 #define _k_file
 
-#define MAX_FILENAME_LENGHT PLATFORM_MAX_PATH
+#define MAX_FILENAME_LENGHT 256

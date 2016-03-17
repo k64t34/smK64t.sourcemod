@@ -16,13 +16,13 @@ for (int i=0;i!=maxChar;i++)
 	}
 }
 //*****************************************************************************
-stock void CutWord(const char[] source, const char[] split,int Number,char[] Word,int WordLen){	
+stock CutWord(const String:source[], const String:split[],Number,String:Word[], WordLen){	
 //******************************************************************************
 if (WordLen==0) return -1;
-int StringLen=strlen(source);
-int i=0;
-int w=0; //Word counter
-int StartChar;
+new StringLen=strlen(source);
+new i=0;
+new w=0; //Word counter
+new StartChar;
 Word[0]=0;
 // Skip leading chars
 while (i<StringLen)
@@ -42,7 +42,7 @@ while (i<StringLen)
 		}
 	if (w==Number) 
 		{
-		int j=0;
+		new j=0;
 		while (StartChar<i)
 			{
 			Word[j]=source[StartChar];
