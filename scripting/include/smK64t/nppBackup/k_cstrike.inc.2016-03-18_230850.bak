@@ -3,6 +3,8 @@
 #endif
 #define _k_cstrike
 
+//#include <cstrike> в 1.3.3  при включении этого инклюд файла не грузился плугин 
+// часть дефов перенес сюда
 #pragma newdecls optional
 #include <cstrike> 
 // Common const from cstrike.inc
@@ -20,6 +22,7 @@
 #define HITGROUP_RIGHTARM  5
 #define HITGROUP_LEFTLEG   6
 #define HITGROUP_RIGHTLEG  7
+
 /*enum HitGroup
 {    
     GENERIC             = 0,
@@ -34,20 +37,25 @@
 */
 
 
-#if defined USE_WEAPON // USE_WEAPON USE_WEAPON USE_WEAPON USE_WEAPON USE_WEAPON USE_WEAPON
+
+
+//#if !defined MAX_WEAPON_NAME
+//#define MAX_WEAPON_NAME 32
+#if defined USE_WEAPON
 #pragma newdecls optional
 #include <smlib.inc> 
-// Common const from smlib
+// Common const from cstrike.inc
 //#define MAX_WEAPON_STRING		80
-//#define MAX_WEAPONS				48	// Max number of weapons availabl
-#if defined MAX_WEAPONS                 //Redefine MAX_WEAPONS from smlib to real weapon count in cstrike
-	#undef MAX_WEAPONS
 #endif
-#define MAX_WEAPONS				35
-
 #pragma newdecls required
+
+
+//#if !defined MAX_WEAPONS
+	#define MAX_WEAPONS             35  // count of weapon on game
+//#endif
+
 //Entity Names for Weapons
-char g_WeaponNames[MAX_WEAPONS][]={
+new String:g_WeaponNames[MAX_WEAPONS][]={
 	"primammo",     "secammo",  "vest",         "vesthelm",
     "defuser",      "nvgs",     "flashbang",    "hegrenade",
     "smokegrenade", "galil",    "ak47",         "scout",
@@ -75,7 +83,7 @@ enum WeaponsSlot
     Slot_Explosive      = 4,    /** Explosive (c4) weapon slot. */
 }
 
-int f_WeaponSlots[MAX_WEAPONS] =    {
+new f_WeaponSlots[MAX_WEAPONS] =    {
          -1, -1, -1, -1, -1, -1,
         CS_SLOT_GRENADE,    CS_SLOT_GRENADE,    CS_SLOT_GRENADE,    CS_SLOT_PRIMARY,
         CS_SLOT_PRIMARY,    CS_SLOT_PRIMARY,    CS_SLOT_PRIMARY,    CS_SLOT_PRIMARY,
@@ -123,7 +131,7 @@ enum WeaponType
     Weapon_Max
 };
 //Item Names for Weapons(GivePlayerItem)		
-char g_WeaponItemNames[WeaponType][]={
+new String:g_WeaponItemNames[WeaponType][]={
 "weapon_glock",
 "weapon_usp",
 "weapon_p228",
@@ -167,14 +175,14 @@ char g_WeaponItemNames[WeaponType][]={
 #define i_nvgs 30
 
 //Item type 0- Item, 1- weapon, -1-fail
-int g_WeaponItemType[WeaponType]={1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,0,0,0,-1}; 
+new g_WeaponItemType[WeaponType]={1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,0,0,0,-1}; 
 
 //**************************************************************
-stock bool WeaponsClientHasWeapon(int client, const char[] weapon){
+stock bool:WeaponsClientHasWeapon(client, const String:weapon[]){
 //**************************************************************
-int WeaponsEntityIndex;
-char classname[64];
-for (int s = 0; s < WEAPONS_SLOTS_MAX; s++)
+new WeaponsEntityIndex;
+decl String:classname[64];
+for (new s = 0; s < WEAPONS_SLOTS_MAX; s++)
 	{
 	WeaponsEntityIndex=GetPlayerWeaponSlot(client,s);	
 	if (WeaponsEntityIndex!=-1)
@@ -191,8 +199,7 @@ for (int s = 0; s < WEAPONS_SLOTS_MAX; s++)
 return false;
 }		
 
-#endif // USE_WEAPON USE_WEAPON USE_WEAPON USE_WEAPON USE_WEAPON USE_WEAPON
-
+#endif
 
 
 
@@ -200,13 +207,13 @@ return false;
 #define iCT 1
 
 //**************************************************************
-stock int iGetClientTeam(int client){
+stock iGetClientTeam(client){
 //**************************************************************
 // IsClientInGame(client);  must be TRUE
 #if defined DEBUG 
 //PrintToChatAll("iGetClientTeam.start");	
 #endif
-int pteam;
+decl pteam;
 pteam=GetClientTeam(client);
 if (pteam==CS_TEAM_T) pteam=0;
 else if (pteam==CS_TEAM_CT) pteam=1;
@@ -217,9 +224,9 @@ else pteam=-1;
 return pteam;
 }
 //**************************************************************
-stock int GetClientAgainstTeam(int client){
+stock GetClientAgainstTeam(client){
 //**************************************************************
-int pteam;
+decl pteam;
 pteam=GetClientTeam(client);
 if (pteam==CS_TEAM_T) pteam=CS_TEAM_CT;
 else if (pteam==CS_TEAM_CT) pteam=CS_TEAM_T;
@@ -227,9 +234,9 @@ else pteam=-1;
 return pteam;
 }
 //**************************************************************
-stock int GetTeamClientNoBotCount(int[] teamscount){
+stock GetTeamClientNoBotCount(teamscount[]){
 //**************************************************************
-for (int i=1; i<=MaxClients; i++)
+for (new i=1; i<=MaxClients; i++)
 	{
 	if (IsClientConnected(i))
 	if (IsClientInGame(i))

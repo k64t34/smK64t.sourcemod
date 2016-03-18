@@ -33,18 +33,12 @@
 }
 */
 
-
-#if defined USE_WEAPON // USE_WEAPON USE_WEAPON USE_WEAPON USE_WEAPON USE_WEAPON USE_WEAPON
+#if defined USE_WEAPON
 #pragma newdecls optional
 #include <smlib.inc> 
 // Common const from smlib
 //#define MAX_WEAPON_STRING		80
-//#define MAX_WEAPONS				48	// Max number of weapons availabl
-#if defined MAX_WEAPONS                 //Redefine MAX_WEAPONS from smlib to real weapon count in cstrike
-	#undef MAX_WEAPONS
-#endif
-#define MAX_WEAPONS				35
-
+//#define MAX_WEAPONS             35  // count of weapon on game
 #pragma newdecls required
 //Entity Names for Weapons
 char g_WeaponNames[MAX_WEAPONS][]={
@@ -172,9 +166,9 @@ int g_WeaponItemType[WeaponType]={1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 //**************************************************************
 stock bool WeaponsClientHasWeapon(int client, const char[] weapon){
 //**************************************************************
-int WeaponsEntityIndex;
-char classname[64];
-for (int s = 0; s < WEAPONS_SLOTS_MAX; s++)
+new WeaponsEntityIndex;
+decl String:classname[64];
+for (new s = 0; s < WEAPONS_SLOTS_MAX; s++)
 	{
 	WeaponsEntityIndex=GetPlayerWeaponSlot(client,s);	
 	if (WeaponsEntityIndex!=-1)
@@ -191,8 +185,7 @@ for (int s = 0; s < WEAPONS_SLOTS_MAX; s++)
 return false;
 }		
 
-#endif // USE_WEAPON USE_WEAPON USE_WEAPON USE_WEAPON USE_WEAPON USE_WEAPON
-
+#endif
 
 
 
@@ -200,13 +193,13 @@ return false;
 #define iCT 1
 
 //**************************************************************
-stock int iGetClientTeam(int client){
+stock iGetClientTeam(client){
 //**************************************************************
 // IsClientInGame(client);  must be TRUE
 #if defined DEBUG 
 //PrintToChatAll("iGetClientTeam.start");	
 #endif
-int pteam;
+decl pteam;
 pteam=GetClientTeam(client);
 if (pteam==CS_TEAM_T) pteam=0;
 else if (pteam==CS_TEAM_CT) pteam=1;
@@ -217,9 +210,9 @@ else pteam=-1;
 return pteam;
 }
 //**************************************************************
-stock int GetClientAgainstTeam(int client){
+stock GetClientAgainstTeam(client){
 //**************************************************************
-int pteam;
+decl pteam;
 pteam=GetClientTeam(client);
 if (pteam==CS_TEAM_T) pteam=CS_TEAM_CT;
 else if (pteam==CS_TEAM_CT) pteam=CS_TEAM_T;
@@ -227,9 +220,9 @@ else pteam=-1;
 return pteam;
 }
 //**************************************************************
-stock int GetTeamClientNoBotCount(int[] teamscount){
+stock GetTeamClientNoBotCount(teamscount[]){
 //**************************************************************
-for (int i=1; i<=MaxClients; i++)
+for (new i=1; i<=MaxClients; i++)
 	{
 	if (IsClientConnected(i))
 	if (IsClientInGame(i))

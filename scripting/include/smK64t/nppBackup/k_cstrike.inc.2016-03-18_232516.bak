@@ -33,21 +33,15 @@
 }
 */
 
-
-#if defined USE_WEAPON // USE_WEAPON USE_WEAPON USE_WEAPON USE_WEAPON USE_WEAPON USE_WEAPON
+#if defined USE_WEAPON
 #pragma newdecls optional
 #include <smlib.inc> 
 // Common const from smlib
 //#define MAX_WEAPON_STRING		80
-//#define MAX_WEAPONS				48	// Max number of weapons availabl
-#if defined MAX_WEAPONS                 //Redefine MAX_WEAPONS from smlib to real weapon count in cstrike
-	#undef MAX_WEAPONS
-#endif
-#define MAX_WEAPONS				35
-
+//#define MAX_WEAPONS             35  // count of weapon on game
 #pragma newdecls required
 //Entity Names for Weapons
-char g_WeaponNames[MAX_WEAPONS][]={
+char g_WeaponNames[/*MAX_WEAPONS*/][]={
 	"primammo",     "secammo",  "vest",         "vesthelm",
     "defuser",      "nvgs",     "flashbang",    "hegrenade",
     "smokegrenade", "galil",    "ak47",         "scout",
@@ -191,8 +185,7 @@ for (int s = 0; s < WEAPONS_SLOTS_MAX; s++)
 return false;
 }		
 
-#endif // USE_WEAPON USE_WEAPON USE_WEAPON USE_WEAPON USE_WEAPON USE_WEAPON
-
+#endif
 
 
 
@@ -227,7 +220,7 @@ else pteam=-1;
 return pteam;
 }
 //**************************************************************
-stock int GetTeamClientNoBotCount(int[] teamscount){
+stock int GetTeamClientNoBotCount(int teamscount[]){
 //**************************************************************
 for (int i=1; i<=MaxClients; i++)
 	{
