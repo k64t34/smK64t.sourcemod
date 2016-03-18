@@ -7,13 +7,14 @@
 // часть дефов перенес сюда
 #pragma newdecls optional
 #include <cstrike> 
+#pragma newdecls required
 // Common const from cstrike.inc
 //#define CS_TEAM_NONE		0	/**< No team yet. */
 //#define CS_TEAM_SPECTATOR	1	/**< Spectators. */
 //#define CS_TEAM_T 			2	/**< Terrorists. */
 //#define CS_TEAM_CT			3	/**< Counter-Terrorists. */
-#pragma newdecls required
 
+#endinput
 #define	HITGROUP_GENERIC   0
 #define	HITGROUP_HEAD      1
 #define	HITGROUP_CHEST     2
@@ -39,18 +40,11 @@
 
 
 
-//#if !defined MAX_WEAPON_NAME
-//#define MAX_WEAPON_NAME 32
+#if !defined MAX_WEAPON_NAME
+#define MAX_WEAPON_NAME 32
 #if defined USE_WEAPON
-#pragma newdecls optional
-#include <smlib.inc> 
-// Common const from cstrike.inc
-//#define MAX_WEAPON_STRING		80
-#pragma newdecls required
-#endif
 
 
-#endinput
 //#if !defined MAX_WEAPONS
 	#define MAX_WEAPONS             35  // count of weapon on game
 //#endif

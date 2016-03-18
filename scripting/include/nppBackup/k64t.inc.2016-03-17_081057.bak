@@ -1,52 +1,44 @@
-#pragma semicolon 1
 #if defined _k_k64t
 	#endinput
 #endif
 #define _k_k64t
+#pragma semicolon 1
+
 #define K64T_INCLUDE_PATH "smk64t\scripting\include\smK64t"
 #define SM_INCLUDE_PATH  "smk64t\sourcemod-1.7.3-git5301\include" 
 #define SMLIB_INCLUDE_PATH  "smlib\scripting\include" 
 
-#define MAX_PLAYERS 33
-#define MAX_CLIENT_NAME 32
-
 #include <sourcemod>
 #include <sdktools>
-#pragma newdecls required ////https://wiki.alliedmods.net/SourcePawn_Transitional_Syntax#Enforcing_new_syntax
-#if defined GAME_CSS
-	#include "smk64t\k_cstrike.inc" 
-#endif
+//#include <cstrike>
+#include <clientprefs>
 
-//#include <sdktools>
-//#include <clientprefs>
 //smlib
-//#include <smlib.inc>
-//#include <color.inc> 
+#include <smlib.inc>
+#include <color.inc> 
 
 //myIncludes
-//#include "smk64t\k_math.inc"
+#include "smk64t\k_math.inc"
 #include "smk64t\k_string.inc"
-//#include "smk64t\player.k64t.inc"
-//#include "smk64t\k_file.inc" 
-//#include "smk64t\k_cstrike.inc"
+#include "smk64t\player.k64t.inc"
+#include "smk64t\k_file.inc" 
+#include "smk64t\k_cstrike.inc"
+
+
+#define MAX_PLAYERS 33
+#define MAX_CLIENT_NAME 32
 
 #if defined DEBUG 	
 	#if defined PLUGIN_VERSION
 		#undef PLUGIN_VERSION
 	#endif		
 #endif
-#include "game\addons\sourcemod\scripting\datetimecomp.inc"
-#if defined DEBUG 	
-	#include "smk64t\k_Debug.inc"
+#include "addons\sourcemod\scripting\datetimecomp.inc"
+#if defined DEBUG 
+	new gPLUGIN_NAME[]=PLUGIN_NAME;
+	#include "Debug.k64t.inc"
 #endif
-//*****************************************************************************
-stock int  GetEntityVelocity(int ent,float velocity[3]) {
-//*****************************************************************************	
-// m_vecVelocity
-return GetEntPropVector(ent,Prop_Data,"m_vecVelocity",velocity);
-}
 
-#endinput
 stock SetClientScreenFade( index, red, green, blue, alpha, delay )
 {
 	new duration = delay * 1000;
@@ -60,6 +52,11 @@ stock SetClientScreenFade( index, red, green, blue, alpha, delay )
 	BfWriteByte( MsgFade, blue );	
 	BfWriteByte( MsgFade, alpha );
 	EndMessage();
+}
+stock GetEntityVelocity(ent,Float:velocity[3]) 
+{
+    // m_vecVelocity
+    return GetEntPropVector(ent,Prop_Data,"m_vecVelocity",velocity);
 }
 //*****************************************************************************
 Explode_Player(client){

@@ -43,7 +43,7 @@
 //#define MAX_WEAPON_NAME 32
 #if defined USE_WEAPON
 #pragma newdecls optional
-#include <smlib.inc> 
+#include <weapons> 
 // Common const from cstrike.inc
 //#define MAX_WEAPON_STRING		80
 #pragma newdecls required
