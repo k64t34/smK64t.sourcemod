@@ -35,7 +35,7 @@
 		#undef PLUGIN_VERSION
 	#endif		
 #endif
-#include "addons\sourcemod\scripting\datetimecomp.inc"
+#include "game\addons\sourcemod\scripting\datetimecomp.inc"
 #if defined DEBUG 	
 	#include "smk64t\k_Debug.inc"
 #endif
