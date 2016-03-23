@@ -3,8 +3,9 @@
 #endif
 #define _k_math
 #define min(%1,%2) ((%1) < (%2) ? (%1) : (%2))
+#endinput
 //*****************************************************************************
-stock GetRandomList(const source_size, list[], const list_size){	
+stock void GetRandomList(const source_size, list[], const list_size){	
 //******************************************************************************
 new i,j;
 for (i=0; i<list_size; i++)
@@ -15,7 +16,7 @@ for (i=0; i<list_size; i++)
 	}	
 }
 //*****************************************************************************
-stock SortArray(a[],const a_size){	
+stock void SortArray(a[],const a_size){	
 //******************************************************************************
 new i,j,swap;
 for (i=0;i<a_size;i++)

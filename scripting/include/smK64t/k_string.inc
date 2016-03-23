@@ -6,13 +6,13 @@
 #define MAX_STRING_LENGHT 512
 
 //*****************************************************************************
-stock void Fill(char[] buffer, int maxlength,const char Char,int count/*,Bool:align=false*/){	
+stock void Fill(char[] buffer, int maxlength,const char Placeholder,int count/*,Bool:align=false*/){	
 //*****************************************************************************
 int maxChar;
 maxChar=min(maxlength,count);
 for (int i=0;i!=maxChar;i++)
 	{
-	buffer[i]=Char];
+	buffer[i]=Placeholder;
 	}
 }
 //*****************************************************************************

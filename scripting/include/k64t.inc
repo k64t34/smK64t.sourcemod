@@ -12,6 +12,7 @@
 
 #include <sourcemod>
 #include <sdktools>
+#include <smlib>
 #pragma newdecls required ////https://wiki.alliedmods.net/SourcePawn_Transitional_Syntax#Enforcing_new_syntax
 #if defined GAME_CSS
 	#include "smk64t\k_cstrike.inc" 
@@ -24,7 +25,7 @@
 //#include <color.inc> 
 
 //myIncludes
-//#include "smk64t\k_math.inc"
+#include "smk64t\k_math.inc"
 #include "smk64t\k_string.inc"
 //#include "smk64t\player.k64t.inc"
 //#include "smk64t\k_file.inc" 
