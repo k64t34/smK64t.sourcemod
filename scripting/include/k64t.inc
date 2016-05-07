@@ -46,6 +46,13 @@ stock int  GetEntityVelocity(int ent,float velocity[3]) {
 // m_vecVelocity
 return GetEntPropVector(ent,Prop_Data,"m_vecVelocity",velocity);
 }
+//*****************************************************************************
+stock char GetConVarChar(Handle cvarHandle){
+//*****************************************************************************
+char buff[2];
+GetConVarString(cvarHandle, buff,2);
+return (buff[0]);
+}
 
 #endinput
 stock SetClientScreenFade( index, red, green, blue, alpha, delay )
@@ -63,7 +70,7 @@ stock SetClientScreenFade( index, red, green, blue, alpha, delay )
 	EndMessage();
 }
 //*****************************************************************************
-Explode_Player(client){
+stock Explode_Player(client){
 //*****************************************************************************
 if (!IsValidAliveClient(client) ) return;
 new ExplosionIndex = CreateEntityByName("env_explosion"); 
