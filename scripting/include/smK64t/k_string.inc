@@ -6,14 +6,18 @@
 #define MAX_STRING_LENGHT 512
 
 //*****************************************************************************
-stock void Fill(char[] buffer, int maxlength,const char Placeholder,int count/*,Bool:align=false*/){	
+stock void FillChar(char[] buffer, int maxlength,const char Filler,int count/*,Bool:align=false*/){	
 //*****************************************************************************
 int maxChar;
 maxChar=min(maxlength,count);
 for (int i=0;i!=maxChar;i++)
 	{
-	buffer[i]=Placeholder;
+	buffer[i]=Filler;
 	}
+}
+//*****************************************************************************
+stock void FillString(char[] buffer, int maxlength,const char[] Filler,int count/*,Bool:align=false*/){	
+//*****************************************************************************
 }
 //*****************************************************************************
 stock void CutWord(const char[] source, const char[] split,int Number,char[] Word,int WordLen){	
