@@ -14,23 +14,11 @@
 #include <sdktools>
 #include <smlib>
 #pragma newdecls required ////https://wiki.alliedmods.net/SourcePawn_Transitional_Syntax#Enforcing_new_syntax
-#if defined GAME_CSS
-	#include "smk64t\k_cstrike.inc" 
-#endif
-
 //#include <sdktools>
 //#include <clientprefs>
 //smlib
 //#include <smlib.inc>
 //#include <color.inc> 
-
-//myIncludes
-#include "smk64t\k_math.inc"
-#include "smk64t\k_string.inc"
-//#include "smk64t\player.k64t.inc"
-//#include "smk64t\k_file.inc" 
-//#include "smk64t\k_cstrike.inc"
-
 #if defined DEBUG 	
 	#if defined PLUGIN_VERSION
 		#undef PLUGIN_VERSION
@@ -40,6 +28,20 @@
 #if defined DEBUG 	
 	#include "smk64t\k_Debug.inc"
 #endif
+//myIncludes
+#if defined GAME_CSS
+	#include "smk64t\k_cstrike.inc" 
+#endif
+#if defined USE_PLAYER
+	#include "smk64t\k_player.inc"
+#endif
+#include "smk64t\k_math.inc"
+#include "smk64t\k_string.inc"
+//#include "smk64t\player.k64t.inc"
+//#include "smk64t\k_file.inc" 
+//#include "smk64t\k_cstrike.inc"
+
+
 //*****************************************************************************
 stock int  GetEntityVelocity(int ent,float velocity[3]) {
 //*****************************************************************************	
@@ -99,3 +101,11 @@ if (ExplosionIndex != -1)
 	}
 if (IsValidAliveClient(client)) ForcePlayerSuicide(client);
 } 
+//*****************************************************************************
+stock int GetHour(){
+//*****************************************************************************
+char Hour[3];
+Ctime=GetTime();
+FormatTime(Hour, 3, "%H",Ctime);
+return StringToInt(Hour);
+}

@@ -11,7 +11,6 @@
 //#define CS_TEAM_T 			2	/**< Terrorists. */
 //#define CS_TEAM_CT			3	/**< Counter-Terrorists. */
 #pragma newdecls required
-
 #define	HITGROUP_GENERIC   0
 #define	HITGROUP_HEAD      1
 #define	HITGROUP_CHEST     2
@@ -35,6 +34,7 @@
 
 
 #if defined USE_WEAPON // USE_WEAPON USE_WEAPON USE_WEAPON USE_WEAPON USE_WEAPON USE_WEAPON
+#define MAX_WEAPON_NAME 16  //Maximum length of a weapon name string
 #pragma newdecls optional
 #include <smlib.inc> 
 // Common const from smlib

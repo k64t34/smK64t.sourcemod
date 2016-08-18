@@ -3,7 +3,6 @@
 #endif
 #define _k_players 1
 //*****************************************************************************
-//*****************************************************************************
 stock bool IsValidClient (int client){
 //*****************************************************************************
 if (client == 0)
@@ -14,8 +13,29 @@ if (!IsClientInGame(client))
 	return false;                
 return true;
 }  
-#endinput
+//*****************************************************************************
+stock bool IsValidAliveClient (int client){
+//*****************************************************************************
+if (!IsValidClient(client)) return false;
+/*if (client == 0)
+	return false;    
+if (!IsClientConnected(client))
+	return false;    
+if (!IsClientInGame(client))
+	return false;            */
+if (IsClientObserver(client)) //Note: a dead player is considered an observer; it does not need to be in the spectators team (at least for CSS).
+	return false;    
+return true;
+}  
+//*****************************************************************************
+stock void SetClientHealth(int client, int Health){
+//*****************************************************************************
+    int HPOffs = FindDataMapOffs(client,"m_iHealth");
+    SetEntData(client,HPOffs,Health,true);
+}
 
+#endinput
+//*************************************************************************************************
 
 
 
@@ -30,12 +50,7 @@ for (new i = 1; i<=i_max ; i++)
 	if (IsClientConnected(i) && IsClientInGame(i) && !IsFakeClient(i)) result++;
 return result;
 }
-//*****************************************************************************
-stock SetClientHealth(client, amount){
-//*****************************************************************************
-    new HPOffs = FindDataMapOffs(client,"m_iHealth");
-    SetEntData(client,HPOffs,amount,true);
-}
+
 //*****************************************************************************
 stock SetClientFrag(client, amount){
 //*****************************************************************************
@@ -48,18 +63,7 @@ SetEntProp(client, Prop_Data, "m_iDeaths", amount, 4);
 }
 
 //*****************************************************************************
-stock IsValidAliveClient (client){
-//*****************************************************************************
-    if (client == 0)
-        return false;    
-    if (!IsClientConnected(client))
-        return false;    
-    if (!IsClientInGame(client))
-        return false;            
-    if (IsClientObserver(client))
-        return false;    
-    return true;
-}  
+
 //*****************************************************************************
 stock IsValidAliveOrDeadClient(client){
 //*****************************************************************************
@@ -73,15 +77,7 @@ stock IsValidAliveOrDeadClient(client){
 }  
 
 
-//*****************************************************************************
-stock GetHour(Ctime, ...){
-//*****************************************************************************
-decl String:Hour[3];
-if (true)
-	Ctime=GetTime();
-FormatTime(Hour, 3, "%H",Ctime);
-return StringToInt(Hour);
-}
+
 //*****************************************************************************
 new g_iAccount = -1; // Add folow code to OnPluginStart
 /*
