@@ -33,6 +33,20 @@ stock void SetClientHealth(int client, int Health){
     int HPOffs = FindDataMapOffs(client,"m_iHealth");
     SetEntData(client,HPOffs,Health,true);
 }
+//*****************************************************************************
+int g_iAccount = -1; // Add folow code to OnPluginStart
+/*
+g_iAccount = FindSendPropOffs("CCSPlayer", "m_iAccount");
+if (g_iAccount == -1)LogError("Error - Unable to get offset for CCSPlayer::m_iAccount");
+*/
+//*****************************************************************************
+stock void SetClientFrag(int client, int amount){SetEntProp(client, Prop_Data, "m_iFrags", amount,4);}
+//*****************************************************************************
+stock void SetClientDeaths(int client, int amount){SetEntProp(client, Prop_Data, "m_iDeaths", amount, 4);}
+//*****************************************************************************
+stock void SetMoney(int client, int amount){if (g_iAccount != -1)SetEntData(client, g_iAccount, amount);}
+//*****************************************************************************
+
 
 #endinput
 //*************************************************************************************************
@@ -41,7 +55,7 @@ stock void SetClientHealth(int client, int Health){
 
 
 
-
+//*****************************************************************************
 stock CountOfRealPlayers(){
 //*****************************************************************************
 new result=0;
@@ -50,20 +64,6 @@ for (new i = 1; i<=i_max ; i++)
 	if (IsClientConnected(i) && IsClientInGame(i) && !IsFakeClient(i)) result++;
 return result;
 }
-
-//*****************************************************************************
-stock SetClientFrag(client, amount){
-//*****************************************************************************
-SetEntProp(client, Prop_Data, "m_iFrags", amount,4);	
-}
-//*****************************************************************************
-stock SetClientDeaths(client, amount){
-//*****************************************************************************
-SetEntProp(client, Prop_Data, "m_iDeaths", amount, 4);
-}
-
-//*****************************************************************************
-
 //*****************************************************************************
 stock IsValidAliveOrDeadClient(client){
 //*****************************************************************************
@@ -76,19 +76,3 @@ stock IsValidAliveOrDeadClient(client){
     return true;
 }  
 
-
-
-//*****************************************************************************
-new g_iAccount = -1; // Add folow code to OnPluginStart
-/*
-g_iAccount = FindSendPropOffs("CCSPlayer", "m_iAccount");
-if (g_iAccount == -1)LogError("Error - Unable to get offset for CCSPlayer::m_iAccount");
-*/
-stock SetMoney(client, amount)
-//*****************************************************************************
-{
-if (g_iAccount != -1)
-{
-	SetEntData(client, g_iAccount, amount);
-}	
-}
