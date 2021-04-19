@@ -12,7 +12,7 @@
 
 #include <sourcemod>
 #include <sdktools>
-#include <smlib>
+//#include <smlib>
 #pragma newdecls required ////https://wiki.alliedmods.net/SourcePawn_Transitional_Syntax#Enforcing_new_syntax
 //#include <sdktools>
 //#include <clientprefs>
@@ -24,7 +24,8 @@
 		#undef PLUGIN_VERSION
 	#endif		
 #endif
-#include "game\addons\sourcemod\scripting\datetimecomp.inc"
+//#include "game\addons\sourcemod\scripting\datetimecomp.inc"
+#include "datetimecomp.inc"
 #if defined DEBUG 	
 	#include "smk64t\k_Debug.inc"
 #endif

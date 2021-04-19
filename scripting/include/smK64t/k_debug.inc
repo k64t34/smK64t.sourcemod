@@ -6,7 +6,7 @@
 #if !defined DEBUG_PLAYER
 	#define DEBUG_PLAYER PLUGIN_AUTHOR
 #endif
-char gPLUGIN_NAME[]=PLUGIN_NAME;
+char DEBUGgPLUGIN_NAME[]=PLUGIN_NAME;
 //*****************************************************************************
 stock void DebugPrint(const char[] format, any:...){
 //*****************************************************************************
@@ -33,10 +33,10 @@ for (int client=1;client<=MaxClients;client++)
 		}		
 	}	
 #else
-PrintToChatAll("[%s] %s",gPLUGIN_NAME,buff);
+PrintToChatAll("[%s] %s",DEBUGgPLUGIN_NAME,buff);
 #endif
-PrintToServer("[%s] %s",gPLUGIN_NAME,buff);
-LogMessage("[%s] %s",gPLUGIN_NAME,buff);
+PrintToServer("[%s] %s",DEBUGgPLUGIN_NAME,buff);
+LogMessage("[%s] %s",DEBUGgPLUGIN_NAME,buff);
 
 //PrintHintTextToAll("%s",msg);
 //PrintCenterTextAll("%s",msg);
