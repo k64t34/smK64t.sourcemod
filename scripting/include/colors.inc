@@ -2,10 +2,14 @@
  *                                                                        *
  *                       Colored Chat Functions                           *
  *                            Author: exvel                               *
- *                           Version: 1.0.2                               *
+ *                           Version: 1.0.5                               *
  *                                                                        *
  **************************************************************************/
 
+#if defined _colors_included
+ #endinput
+#endif
+#define _colors_included
  
 #define MAX_MESSAGE_LENGTH 250
 #define MAX_COLORS 6
@@ -29,6 +33,7 @@ new String:CTag[][] = {"{default}", "{green}", "{lightgreen}", "{red}", "{blue}"
 new String:CTagCode[][] = {"\x01", "\x04", "\x03", "\x03", "\x03", "\x05"};
 new bool:CTagReqSayText2[] = {false, false, true, true, true, false};
 new bool:CEventIsHooked = false;
+new bool:CSkipList[MAXPLAYERS+1] = {false,...};
 
 /* Game default profile */
 new bool:CProfile_Colors[] = {true, true, false, false, false, false};
@@ -80,15 +85,18 @@ stock CPrintToChat(client, const String:szMessage[], any:...)
  */
 stock CPrintToChatAll(const String:szMessage[], any:...)
 {
+	decl String:szBuffer[MAX_MESSAGE_LENGTH];
+	
 	for (new i = 1; i <= MaxClients; i++)
 	{
-		if (IsClientInGame(i) && !IsFakeClient(i))
+		if (IsClientInGame(i) && !IsFakeClient(i) && !CSkipList[i])
 		{
-			decl String:szBuffer[MAX_MESSAGE_LENGTH];
 			SetGlobalTransTarget(i);
 			VFormat(szBuffer, sizeof(szBuffer), szMessage, 2);
 			CPrintToChat(i, szBuffer);
 		}
+		
+		CSkipList[i] = false;
 	}
 }
 
@@ -149,15 +157,18 @@ stock CPrintToChatAllEx(author, const String:szMessage[], any:...)
 	if (!IsClientInGame(author))
 		ThrowError("Client %d is not in game", author);
 	
+	decl String:szBuffer[MAX_MESSAGE_LENGTH];
+	
 	for (new i = 1; i <= MaxClients; i++)
 	{
-		if (IsClientInGame(i) && !IsFakeClient(i))
+		if (IsClientInGame(i) && !IsFakeClient(i) && !CSkipList[i])
 		{
-			decl String:szBuffer[MAX_MESSAGE_LENGTH];
 			SetGlobalTransTarget(i);
 			VFormat(szBuffer, sizeof(szBuffer), szMessage, 3);
 			CPrintToChatEx(i, author, szBuffer);
 		}
+		
+		CSkipList[i] = false;
 	}
 }
 
@@ -177,6 +188,23 @@ stock CRemoveTags(String:szMessage[], maxlength)
 	ReplaceString(szMessage, maxlength, "{teamcolor}", "");
 }
 
+/**
+ * This function should only be used right in front of
+ * CPrintToChatAll or CPrintToChatAllEx and it tells
+ * to those funcions to skip specified client when printing
+ * message to all clients. After message is printed client will
+ * no more be skipped.
+ * 
+ * @param client   Client index
+ * @return		   No return
+ */
+stock CSkipNextClient(client)
+{
+	if (client <= 0 || client > MaxClients)
+		ThrowError("Invalid client index %d", client);
+	
+	CSkipList[client] = true;
+}
 
 /**
  * Replaces color tags in a string with color codes
@@ -236,7 +264,7 @@ stock CFormat(String:szMessage[], maxlength, author=NO_INDEX)
 		{
 			ReplaceString(szMessage, maxlength, CTag[i], CTagCode[i]);
 		}
-		/* Tag need saytext2 */
+		/* Tag needs saytext2 */
 		else
 		{
 			/* If saytext2 is not supported by game replace tag with green tag */
@@ -338,6 +366,7 @@ stock CSetupProfile()
 		CProfile_Colors[Color_Lightgreen] = true;
 		CProfile_Colors[Color_Red] = true;
 		CProfile_Colors[Color_Blue] = true;
+		CProfile_Colors[Color_Olive] = true;
 		CProfile_TeamIndex[Color_Lightgreen] = SERVER_INDEX;
 		CProfile_TeamIndex[Color_Red] = 2;
 		CProfile_TeamIndex[Color_Blue] = 3;
@@ -372,6 +401,7 @@ stock CSetupProfile()
 		{
 			CProfile_Colors[Color_Red] = true;
 			CProfile_Colors[Color_Blue] = true;
+			CProfile_Colors[Color_Olive] = true;
 			CProfile_TeamIndex[Color_Red] = 3;
 			CProfile_TeamIndex[Color_Blue] = 2;
 			CProfile_SayText2 = true;
@@ -379,6 +409,7 @@ stock CSetupProfile()
 		else
 		{
 			CProfile_SayText2 = false;
+			CProfile_Colors[Color_Olive] = true;
 		}
 	}
 	else if (StrEqual(szGameName, "dod", false))
@@ -407,4 +438,9 @@ stock CSetupProfile()
 public Action:CEvent_MapStart(Handle:event, const String:name[], bool:dontBroadcast)
 {
 	CSetupProfile();
+	
+	for (new i = 1; i <= MaxClients; i++)
+	{
+		CSkipList[i] = false;
+	}
 }

@@ -26,7 +26,7 @@ for (int client=1;client<=MaxClients;client++)
 			{
 			if (strcmp(DEBUG_PLAYER, clientname,false)==0)
 				{
-				PrintToChat(client,"[%s] %s",gPLUGIN_NAME,buff);	
+				PrintToChat(client,"[%s] %s",DEBUGgPLUGIN_NAME,buff);	
 				break;
 				}
 			}	

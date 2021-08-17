@@ -17,7 +17,7 @@ stock void FillString(char[] buffer, int maxlength,const char[] Filler,int CharC
 //*****************************************************************************
 }
 //*****************************************************************************
-stock void CutWord(const char[] source, const char[] split,int Number,char[] Word,int WordLen){	
+stock int CutWord(const char[] source, const char[] split,int Number,char[] Word,int WordLen){	
 //******************************************************************************
 if (WordLen==0) return -1;
 int StringLen=strlen(source);

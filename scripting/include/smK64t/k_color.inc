@@ -2,7 +2,7 @@
 	#endinput
 #endif
 #define _k_color
-#include "colors.inc"
+//#include "colors.inc"
 //Regular colors: default, green (yellow in L4D), olive.
 //Team colors: lightgreen, red, blue.
 
@@ -23,13 +23,13 @@
 
 
 //**************************************************************
-spectrum_ocg(value,range1,range2,range3){
+//stock spectrum_ocg(value,range1,range2,range3){
 //**************************************************************
-decl _c;
-if (0<=value && value<range1) _c=Color_Default;
-else if (range1<=value && value<range2) _c=Color_Lightgreen;
-else if (range2<=value && value<range3) _c=Color_Green;
-else if (value>range2) _c=Color_Red; 
-else _c=Color_Default;
-return _c;
-}
+//decl _c;
+//if (0<=value && value<range1) _c=Color_Default;
+//else if (range1<=value && value<range2) _c=Color_Lightgreen;
+//else if (range2<=value && value<range3) _c=Color_Green;
+//else if (value>range2) _c=Color_Red; 
+//else _c=Color_Default;
+//return _c;
+//}

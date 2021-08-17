@@ -39,9 +39,52 @@
 #include "smk64t\k_math.inc"
 #include "smk64t\k_string.inc"
 //#include "smk64t\player.k64t.inc"
-//#include "smk64t\k_file.inc" 
+#include "smk64t\k_file.inc" 
+#include "smk64t\k_color.inc" 
 //#include "smk64t\k_cstrike.inc"
 
+//*****************************************************************************
+stock void GetTimeHMS(int[] HMS){
+//*****************************************************************************
+char strBuff[3];
+int t=GetTime();
+FormatTime(strBuff, 3, "%H",t);
+HMS[0]=StringToInt(strBuff);
+FormatTime(strBuff, 3, "%M",t);
+HMS[1]=StringToInt(strBuff);
+FormatTime(strBuff, 3, "%S",t);
+HMS[2]=StringToInt(strBuff);
+//https://sm.alliedmods.net/new-api/sourcemod/GetTime
+//int GetTime(int bigStamp[2])
+//Parameters
+//int[2] bigStamp
+//Optional array to store the 64bit timestamp in.
+//Return Value
+//32bit timestamp (number of seconds since unix epoch).00:00:00 UTC) 1 םגאנ //1970 דמהא 
+/*
+FormatTime
+%a abbreviated weekday name (Sun) 
+%A full weekday name (Sunday) 
+%b abbreviated month name (Dec) 
+%B full month name (December) 
+%c date and time (Dec 2 06:55:15 1979) 
+%d day of the month (02) 
+%H hour of the 24-hour day (06) 
+%I hour of the 12-hour day (06) 
+%j day of the year, from 001 (335) 
+%m month of the year, from 01 (12) 
+%M minutes after the hour (55) 
+%p AM/PM indicator (AM) 
+%S seconds after the minute (15) 
+%U Sunday week of the year, from 00 (48) 
+%w day of the week, from 0 for Sunday (6) 
+%W Monday week of the year, from 00 (47) 
+%x date (Dec 2 1979) 
+%X time (06:55:15) 
+%y year of the century, from 00 (79) 
+%Y year (1979) 
+*/	
+}
 
 //*****************************************************************************
 stock int  GetEntityVelocity(int ent,float velocity[3]) {
