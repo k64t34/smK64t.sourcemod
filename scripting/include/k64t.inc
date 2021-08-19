@@ -33,6 +33,9 @@
 #if defined GAME_CSS
 	#include "smk64t\k_cstrike.inc" 
 #endif
+#if defined GAME_DOD
+	#include "smk64t\k_DODs.inc" 
+#endif	
 #if defined USE_PLAYER
 	#include "smk64t\k_player.inc"
 #endif
@@ -100,21 +103,31 @@ GetConVarString(cvarHandle, buff,2);
 return (buff[0]);
 }
 
-#endinput
-stock SetClientScreenFade( index, red, green, blue, alpha, delay )
-{
-	new duration = delay * 1000;
-	
-	new  Handle:MsgFade = StartMessageOne( "Fade", index );
-	BfWriteShort( MsgFade, 500 );
-	BfWriteShort( MsgFade, duration );
-	BfWriteShort( MsgFade, FFADE_IN );
-	BfWriteByte( MsgFade, red );
-	BfWriteByte( MsgFade, green );
-	BfWriteByte( MsgFade, blue );	
-	BfWriteByte( MsgFade, alpha );
-	EndMessage();
+
+//https://wiki.alliedmods.net/User_Messages
+//
+//hese may not be correct...
+#define FFADE_IN            0x0001        // Just here so we don't pass 0 into the function
+#define FFADE_OUT           0x0002        // Fade out (not in)
+#define FFADE_MODULATE      0x0004        // Modulate (don't blend)
+#define FFADE_STAYOUT       0x0008        // ignores the duration, stays faded out until new ScreenFade message received
+#define FFADE_PURGE         0x0010        // Purges all other fades, replacing them with this one
+//*****************************************************************************
+stock void SetClientScreenFade( int index, int red, int green, int blue, int alpha, int duration ){
+//*****************************************************************************	
+//int duration = delay * 1000;
+Handle MsgFade = StartMessageOne( "Fade", index );
+BfWriteShort( MsgFade, 500 );
+BfWriteShort( MsgFade, duration );
+BfWriteShort( MsgFade, FFADE_OUT );
+BfWriteByte( MsgFade, red );
+BfWriteByte( MsgFade, green );
+BfWriteByte( MsgFade, blue );	
+BfWriteByte( MsgFade, alpha );
+EndMessage();
 }
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+#endinput
 //*****************************************************************************
 stock Explode_Player(client){
 //*****************************************************************************

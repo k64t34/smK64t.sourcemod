@@ -30,10 +30,11 @@ return true;
 //*****************************************************************************
 stock void SetClientHealth(int client, int Health){
 //*****************************************************************************
-    int HPOffs = FindDataMapOffs(client,"m_iHealth");
-	FindDataMapInfo
-	int FindDataMapInfo(int entity, const char[] prop, PropFieldType& type, int& num_bits, int& local_offset)
-    SetEntData(client,HPOffs,Health,true);
+SetEntityHealth(client,Health);
+//int HPOffs = FindDataMapOffs(client,"m_iHealth");
+//FindDataMapInfo
+//int FindDataMapInfo(int entity, const char[] prop, PropFieldType& type, int& num_bits, int& local_offset)
+//SetEntData(client,HPOffs,Health,true);
 }
 
 //*****************************************************************************
