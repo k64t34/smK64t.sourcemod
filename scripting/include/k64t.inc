@@ -113,19 +113,32 @@ return (buff[0]);
 #define FFADE_STAYOUT       0x0008        // ignores the duration, stays faded out until new ScreenFade message received
 #define FFADE_PURGE         0x0010        // Purges all other fades, replacing them with this one
 //*****************************************************************************
-stock void SetClientScreenFade( int index, int red, int green, int blue, int alpha, int duration ){
+//stock void SetClientScreenFade( int index, int red, int green, int blue, int alpha, int duration ){
 //*****************************************************************************	
 //int duration = delay * 1000;
-Handle MsgFade = StartMessageOne( "Fade", index );
-BfWriteShort( MsgFade, 500 );
-BfWriteShort( MsgFade, duration );
-BfWriteShort( MsgFade, FFADE_OUT );
-BfWriteByte( MsgFade, red );
-BfWriteByte( MsgFade, green );
-BfWriteByte( MsgFade, blue );	
-BfWriteByte( MsgFade, alpha );
-EndMessage();
+///Handle MsgFade = StartMessageOne( "Fade", index );
+//BfWriteShort( MsgFade, 500 );
+//BfWriteShort( MsgFade, duration );
+//BfWriteShort( MsgFade, FFADE_OUT );
+//BfWriteByte( MsgFade, red );
+//BfWriteByte( MsgFade, green );
+//BfWriteByte( MsgFade, blue );	
+//BfWriteByte( MsgFade, alpha );
+//EndMessage();
+//}
+//Fade the screen //https://forums.alliedmods.net/showthread.php?t=268037
+stock void  ScreenFade(int client, int red, int green, int blue, int alpha, int duration, int type, int holdtime=100){
+	Handle msg = StartMessageOne("Fade", client);
+	BfWriteShort(msg, duration);
+	BfWriteShort(msg, holdtime);	
+	BfWriteShort(msg, type);
+	BfWriteByte(msg, red);
+	BfWriteByte(msg, green);
+	BfWriteByte(msg, blue);
+	BfWriteByte(msg, alpha);
+	EndMessage();
 }
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 #endinput
 //*****************************************************************************
