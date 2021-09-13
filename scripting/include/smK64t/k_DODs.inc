@@ -10,9 +10,11 @@
 #define DOD_TEAM_SPECTATOR	1	//Spectators
 #define DOD_TEAM_ALLIES		2	//Allies
 #define DOD_TEAM_AXIS		3	//Axis
+#define DOD_TEAMS_COUNT		4	//Count of teams
 
 #define CDODTeam_m_iRoundsWon_offset	904			
 #define CDODTeam_m_iRoundsWon_size	1
+#pragma tabsize 0
 stock int GetTeamRoundsWon (int team){
 	int result=-1;
 	if (team==DOD_TEAM_ALLIES || team==DOD_TEAM_AXIS)
@@ -23,6 +25,10 @@ stock void SetTeamRoundsWon (int team,int Won){
 	if (team==DOD_TEAM_ALLIES || team==DOD_TEAM_AXIS)
 		SetEntData(GetTeamEntity(team), CDODTeam_m_iRoundsWon_offset, Won, CDODTeam_m_iRoundsWon_size, true);
 }
+// no offset found for this function. Try again! stock void SetTeamKills (int team,int Won){
+//if (team==DOD_TEAM_ALLIES || team==DOD_TEAM_AXIS)
+//		SetEntData(GetTeamEntity(team), CDODTeam_m_iRoundsWon_offset, Won, CDODTeam_m_iRoundsWon_size, true);	
+//}	
 #endinput
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
