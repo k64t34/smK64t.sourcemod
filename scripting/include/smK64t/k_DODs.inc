@@ -14,6 +14,8 @@
 
 #define CDODTeam_m_iRoundsWon_offset	904			
 #define CDODTeam_m_iRoundsWon_size	1
+#define CDODPlayer_m_iDeaths_offset	1100			
+#define CDODPlayer_m_iDeaths_size	2
 #pragma tabsize 0
 stock int GetTeamRoundsWon (int team){
 	int result=-1;
@@ -29,6 +31,17 @@ stock void SetTeamRoundsWon (int team,int Won){
 //if (team==DOD_TEAM_ALLIES || team==DOD_TEAM_AXIS)
 //		SetEntData(GetTeamEntity(team), CDODTeam_m_iRoundsWon_offset, Won, CDODTeam_m_iRoundsWon_size, true);	
 //}	
+
+stock void SetDODClientFrag(int client, int amount){/*SetEntProp(client, Prop_Data, "m_iFrags", amount,4);*/}
+stock void SetDODClientDeaths(int client, int amount){SetEntData(client, CDODPlayer_m_iDeaths_offset, amount, CDODPlayer_m_iDeaths_size, true);}
+//Table: m_iDeaths (offset 1100) (type m_iDeaths)
+stock void SetDODClientPoints(int client, int amount){}
+stock int  GetDODClientPoints(int client){}
+//Table: m_iScore (offset 964) (type m_iScore)
+//Table: m_iObjScore (offset 1784) (type m_iObjScore)
+
+
+
 #endinput
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
