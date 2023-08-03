@@ -36,7 +36,7 @@ stock void SetDODClientFrag(int client, int amount){/*SetEntProp(client, Prop_Da
 stock void SetDODClientDeaths(int client, int amount){SetEntData(client, CDODPlayer_m_iDeaths_offset, amount, CDODPlayer_m_iDeaths_size, true);}
 //Table: m_iDeaths (offset 1100) (type m_iDeaths)
 stock void SetDODClientPoints(int client, int amount){}
-stock int  GetDODClientPoints(int client){}
+stock int  GetDODClientPoints(int client){return (0);}
 //Table: m_iScore (offset 964) (type m_iScore)
 //Table: m_iObjScore (offset 1784) (type m_iObjScore)
 

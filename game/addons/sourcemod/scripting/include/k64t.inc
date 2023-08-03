@@ -90,10 +90,10 @@ FormatTime
 }
 
 //*****************************************************************************
-stock int  GetEntityVelocity(int ent,float velocity[3]) {
+stock void  GetEntityVelocity(int ent,float velocity[3]) {
 //*****************************************************************************	
 // m_vecVelocity
-return GetEntPropVector(ent,Prop_Data,"m_vecVelocity",velocity);
+GetEntPropVector(ent,Prop_Data,"m_vecVelocity",velocity);
 }
 //*****************************************************************************
 stock char GetConVarChar(Handle cvarHandle){
