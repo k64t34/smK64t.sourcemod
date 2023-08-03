@@ -7,6 +7,6 @@ Core for my SourceMod plugins
 -  [ ]  Make plugins interchange
 
 
-#Usege
-'''#include <myk64t> // Use smk64t libs
-'''#include <myk64_css_core> // Use core for Counter-Strike Source
+#Usege  
+'''#include <myk64t> // Use smk64t libs  
+'''#include <myk64_css_core> // Use core for Counter-Strike Source  
