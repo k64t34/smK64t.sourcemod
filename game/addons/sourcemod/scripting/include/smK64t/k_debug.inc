@@ -3,10 +3,13 @@
 #endif
 #define _k_debug
 #include "smk64t\k_player.inc"
+#include "smk64t\k_file.inc "
 #if !defined DEBUG_PLAYER
 	#define DEBUG_PLAYER PLUGIN_AUTHOR
 #endif
 char DEBUGgPLUGIN_NAME[]=PLUGIN_NAME;
+char  g_LOG[MAX_FILENAME_LENGHT];// = "DODplayerArbiter.log";//TODO:GetPluginFilename(,g_LOG,sizeof(g_LOG)); and pass to k_debug 
+
 //*****************************************************************************
 stock void DebugPrint(const char[] format, any:...){
 //*****************************************************************************
@@ -40,6 +43,15 @@ LogMessage("[%s] %s",DEBUGgPLUGIN_NAME,buff);
 
 //PrintHintTextToAll("%s",msg);
 //PrintCenterTextAll("%s",msg);
+}
+//************************************************
+stock void DebugLog(const char[] format, any:...){
+//************************************************
+char buff[256];
+VFormat(buff, sizeof(buff), format, 2);
+LogMessage("[%s] %s",DEBUGgPLUGIN_NAME,buff);	
+LogToFile(g_LOG,buff);
+DebugPrint(buff);
 }
 //*****************************************************************************
 //stock PrintToAllConsole(String:msg[]){

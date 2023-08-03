@@ -5,8 +5,10 @@
 //*****************************************************************************
 stock bool IsValidClient (int client){
 //*****************************************************************************
-if (client == 0)
+if (client < 1)
 	return false;    
+if (client > MAX_PLAYERS)
+	return false; 
 if (!IsClientConnected(client))
 	return false;    
 if (!IsClientInGame(client))

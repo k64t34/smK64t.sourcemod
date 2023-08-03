@@ -44,8 +44,8 @@ stock int  GetDODClientPoints(int client){return (0);}
 
 #endinput
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-// Dump of all network properties for "dod" as at 2021/08/31
+sm_dump_netprops <file>
+// Dump of all network properties for "dod" as at 2023/08/03
 //
 
 CAI_BaseNPC (type DT_AI_BaseNPC)
