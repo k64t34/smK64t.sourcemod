@@ -39,7 +39,7 @@ for (int client=1;client<=MaxClients;client++)
 PrintToChatAll("[%s] %s",DEBUGgPLUGIN_NAME,buff);
 #endif
 PrintToServer("[%s] %s",DEBUGgPLUGIN_NAME,buff);
-LogMessage("[%s] %s",DEBUGgPLUGIN_NAME,buff);
+//LogMessage("[%s] %s",DEBUGgPLUGIN_NAME,buff);
 
 //PrintHintTextToAll("%s",msg);
 //PrintCenterTextAll("%s",msg);
@@ -49,7 +49,7 @@ stock void DebugLog(const char[] format, any:...){
 //************************************************
 char buff[256];
 VFormat(buff, sizeof(buff), format, 2);
-LogMessage("[%s] %s",DEBUGgPLUGIN_NAME,buff);	
+LogMessage(buff);
 LogToFile(g_LOG,buff);
 DebugPrint(buff);
 }

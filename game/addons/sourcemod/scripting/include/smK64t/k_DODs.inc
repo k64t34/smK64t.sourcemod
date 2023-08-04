@@ -23,6 +23,10 @@ stock int GetTeamRoundsWon (int team){
 		result=GetEntData(GetTeamEntity(team), CDODTeam_m_iRoundsWon_offset, CDODTeam_m_iRoundsWon_size);	
 return result;
 }
+stock int GetTeamFrag(int team){return (0);}
+stock int GetTeamDeaths(int team){return (0);}
+stock void SetTeamFrag(int team,int amount){}
+stock void SetTeamDeaths(int team,int amount){}
 stock void SetTeamRoundsWon (int team,int Won){
 	if (team==DOD_TEAM_ALLIES || team==DOD_TEAM_AXIS)
 		SetEntData(GetTeamEntity(team), CDODTeam_m_iRoundsWon_offset, Won, CDODTeam_m_iRoundsWon_size, true);
@@ -32,8 +36,8 @@ stock void SetTeamRoundsWon (int team,int Won){
 //		SetEntData(GetTeamEntity(team), CDODTeam_m_iRoundsWon_offset, Won, CDODTeam_m_iRoundsWon_size, true);	
 //}	
 
-stock void SetDODClientFrag(int client, int amount){/*SetEntProp(client, Prop_Data, "m_iFrags", amount,4);*/}
-stock void SetDODClientDeaths(int client, int amount){SetEntData(client, CDODPlayer_m_iDeaths_offset, amount, CDODPlayer_m_iDeaths_size, true);}
+stock void SetDODClientFrag(int client, int amount){SetEntProp(client, Prop_Data, "m_iFrags", amount);}						
+stock void SetDODClientDeaths(int client, int amount){SetEntProp(client, Prop_Data, "m_iDeaths", amount);}//{SetEntData(client, CDODPlayer_m_iDeaths_offset, amount, CDODPlayer_m_iDeaths_size, true);}
 //Table: m_iDeaths (offset 1100) (type m_iDeaths)
 stock void SetDODClientPoints(int client, int amount){}
 stock int  GetDODClientPoints(int client){return (0);}
