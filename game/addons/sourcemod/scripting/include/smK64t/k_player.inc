@@ -5,14 +5,13 @@
 //*****************************************************************************
 stock bool IsValidClient (int client){
 //*****************************************************************************
-if (client < 1)
-	return false;    
-if (client > MAX_PLAYERS)
-	return false; 
-if (!IsClientConnected(client))
-	return false;    
-if (!IsClientInGame(client))
-	return false;                
+if (client < 1)					return false;    
+	//if (client > MAX_PLAYERS)
+	if (client > MaxClients)	return false; 
+if (!IsClientConnected(client))	return false;    
+if (!IsClientInGame(client))	return false;    
+if (!IsPlayerAlive(client))		return false;    
+if (!GetClientTeam(client) > TEAM_SPECTATOR))return false;    
 return true;
 }  
 //*****************************************************************************

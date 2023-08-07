@@ -50,7 +50,7 @@ stock void DebugLog(const char[] format, any:...){
 char buff[256];
 VFormat(buff, sizeof(buff), format, 2);
 LogMessage(buff);
-LogToFile(g_LOG,buff);
+//LogToFile(g_LOG,buff);
 DebugPrint(buff);
 }
 //*****************************************************************************
