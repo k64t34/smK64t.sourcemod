@@ -2,16 +2,20 @@
  #endinput
 #endif
 #define _k_players 1
+
+#if !defined TEAM_SPECTATOR
+#define TEAM_SPECTATOR 1
+#endif
 //*****************************************************************************
 stock bool IsValidClient (int client){
 //*****************************************************************************
 if (client < 1)					return false;    
-	//if (client > MAX_PLAYERS)
-	if (client > MaxClients)	return false; 
+//if (client > MAX_PLAYERS)
+if (client > MaxClients)	return false; 
 if (!IsClientConnected(client))	return false;    
 if (!IsClientInGame(client))	return false;    
-if (!IsPlayerAlive(client))		return false;    
-if (!GetClientTeam(client) > TEAM_SPECTATOR))return false;    
+//if (!IsPlayerAlive(client))		return false;    
+if (GetClientTeam(client) <= TEAM_SPECTATOR)return false;    
 return true;
 }  
 //*****************************************************************************

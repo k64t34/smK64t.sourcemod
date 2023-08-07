@@ -11,6 +11,10 @@
 #define DOD_TEAM_ALLIES		2	//Allies
 #define DOD_TEAM_AXIS		3	//Axis
 #define DOD_TEAMS_COUNT		4	//Count of teams
+#if defined TEAM_SPECTATOR
+#undef TEAM_SPECTATOR	
+#endif 
+#define TEAM_SPECTATOR	DOD_TEAM_SPECTATOR	//Spectators
 
 #define CDODTeam_m_iRoundsWon_offset	904			
 #define CDODTeam_m_iRoundsWon_size	1
@@ -44,7 +48,18 @@ stock int  GetDODClientPoints(int client){return (0);}
 //Table: m_iScore (offset 964) (type m_iScore)
 //Table: m_iObjScore (offset 1784) (type m_iObjScore)
 
-
+#define DOD_Rifleman 0
+#define DOD_Assault 1
+#define DOD_Support 2
+#define DOD_Sniper 3
+#define DOD_MG 4
+#define DOD_Rocket 5
+#define DOD_NoClass -1
+stock int GetDODPlayerClass(int client)
+{
+	return (GetEntProp(client, Prop_Send, "m_iPlayerClass"));
+}
+stock void SetDODPlayerClass(int client, int class){SetEntProp(client, Prop_Send, "m_iPlayerClass", class);}
 
 #endinput
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
