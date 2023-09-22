@@ -6,9 +6,9 @@
 //#define K64T_INCLUDE_PATH "smk64t\scripting\include\smK64t"
 //#define SM_INCLUDE_PATH  "smk64t\sourcemod-1.7.3-git5301\include" 
 //#define SMLIB_INCLUDE_PATH  "smlib\scripting\include" 
+#include "smk64t\define.inc" 
 
-#define MAX_PLAYERS 33 // Максимальное количество игроков  = 32, но нумерация массива начинается с нуля, а нумирация игроков с 1, 0 - это сам сервер. Что бы не вычислять индекс при каждом обращении к массиву, проще пожертвовать нескольикими байтами памяти первого нулевого элемента.
-#define MAX_CLIENT_NAME 32
+
 
 #include <sourcemod>
 #include <sdktools>
